@@ -9,6 +9,7 @@ TagManager:
   - Blanca
   - Negra
   - Ground
+  - TriggerCarretera
   layers:
   - Default
   - TransparentFX

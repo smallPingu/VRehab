@@ -11,7 +11,7 @@ public class SeccionTrigger : MonoBehaviour
     {
         if (otro.gameObject.CompareTag("TriggerCarretera"))
         {
-            Instantiate(seccionCarretera);
+            Instantiate(seccionCarretera, new Vector3(0, 0, 30), Quaternion.identity);
         }
     }
 }
