@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 2096951295909966359}
   - component: {fileID: 8695596150670369980}
   m_Layer: 0
-  m_Name: Carretera
+  m_Name: CarreteraInicial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
