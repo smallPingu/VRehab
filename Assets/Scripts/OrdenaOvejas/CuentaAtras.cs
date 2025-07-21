@@ -11,8 +11,8 @@ public class CountdownManager : MonoBehaviour
 
     private List<GameObject> currentDigits = new List<GameObject>();
 
-    public ContadorNegras contadorNegras;
-    public ContadorBlancas contadorBlancas;
+    public Contador contadorNegras;
+    public Contador contadorBlancas;
     public string nextSceneName;
 
     void Start()
