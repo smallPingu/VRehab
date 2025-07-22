@@ -925,7 +925,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 336303768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2a97365efdc7ed4a9a9eb3a66544224, type: 3}
+  m_Script: {fileID: 11500000, guid: e0df055f353fb5a48869f535a599b0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   numberModels:
@@ -1543,6 +1543,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  colorOveja: Negra
 --- !u!1001 &932917387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1665,10 +1666,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 932917388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dee847112f5b0347835d510cd724288, type: 3}
+  m_Script: {fileID: 11500000, guid: b396be9139aec3942a38f5513d7dacbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ovejaEntra:
+  onSheepTriggered:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1458074179}
@@ -1683,6 +1684,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  colorOveja: Blanca
 --- !u!1001 &1028221777
 PrefabInstance:
   m_ObjectHideFlags: 0

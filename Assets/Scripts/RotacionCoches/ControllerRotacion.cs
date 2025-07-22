@@ -24,7 +24,7 @@ public class ControllerRotacion : MonoBehaviour
         if (Mathf.Abs(angleDelta) <= angleThreshold) return;
 
         float dir = Mathf.Sign(angleDelta);              // -1 left, +1 right
-        transform.Translate(Vector3.forward * dir * speed * Time.deltaTime, Space.World);
+        transform.Translate(Vector3.left * dir * speed * Time.deltaTime, Space.World);
     }
 
     float GetAxisAngle()

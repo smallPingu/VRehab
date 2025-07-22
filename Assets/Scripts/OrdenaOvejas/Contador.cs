@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class ContadorNegras : MonoBehaviour
+public class Contador : MonoBehaviour
 {
-    public GameObject[] numberModels; // Modelos 0 al 9
+    public GameObject[] numberModels;
     public Transform displayPoint;
     public int currentValue = 0;
 
@@ -23,30 +23,37 @@ public class ContadorNegras : MonoBehaviour
 
     private void UpdateDisplay()
     {
-        // Limpiar los modelos anteriores
         foreach (GameObject digit in currentDigits)
         {
             Destroy(digit);
         }
         currentDigits.Clear();
 
-        // Separar el número actual en dígitos
         char[] digits = currentValue.ToString().ToCharArray();
         float spacing = 1.0f;
+
         float totalWidth = (digits.Length - 1) * spacing;
+        float startOffset = totalWidth / 2f;
 
         for (int i = 0; i < digits.Length; i++)
         {
             int digitValue = (int)char.GetNumericValue(digits[i]);
-            Vector3 position = displayPoint.position + new Vector3((i * spacing) - totalWidth / 2f, 0, 0);
-            GameObject digitGO = Instantiate(numberModels[digitValue], position, displayPoint.rotation);
+
+            Vector3 localPosition = new Vector3(startOffset - (i * spacing), 0, 0);
+
+            Vector3 worldPosition = displayPoint.TransformPoint(localPosition);
+
+            GameObject digitGO = Instantiate(numberModels[digitValue], worldPosition, displayPoint.rotation);
+
+            digitGO.transform.SetParent(displayPoint);
+
             currentDigits.Add(digitGO);
         }
     }
 
     private void Start()
     {
-        UpdateDisplay(); // Mostrar el 0 al inicio
+        UpdateDisplay();
     }
 
     public int GetPuntuacion()
