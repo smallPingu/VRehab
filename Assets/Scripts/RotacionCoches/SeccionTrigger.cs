@@ -18,7 +18,15 @@ public class SeccionTrigger : MonoBehaviour
         if (otro.gameObject.CompareTag("TriggerCarretera"))
         {
             GameObject aux;
-            aux = Instantiate(seccionCarretera, new Vector3(0, 0, 215), Quaternion.identity);
+            int dist = manager.GetCarrInic();
+            float radianesGeneracion = manager.GetGradosGen() * Mathf.Deg2Rad;
+            aux = Instantiate(seccionCarretera, new Vector3((19f) * dist * Mathf.Cos(radianesGeneracion), 0, (19f) * dist * Mathf.Sin(radianesGeneracion) - 0.01f), Quaternion.Euler(0, -(manager.GetGradosGen() - 90), 0));
+
+            // Para que las nuevas carreteras se puedan mover
+            MoverDireccionJugadores mover = aux.GetComponent<MoverDireccionJugadores>();
+
+            mover.SetDireccion(new Vector3(0,0,0));
+            mover.InicializarDireccion(false);
 
             manager.BorrarPrimeraCarretera(); //Borramos sección de carretera no visible
             manager.AniadirCarreteraLista(aux);
