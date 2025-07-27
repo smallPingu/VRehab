@@ -13,16 +13,16 @@ public class ManagerCarretera : MonoBehaviour
     {
         float radianesGeneracion = gradosGeneracion * Mathf.Deg2Rad;
         GameObject aux;
-        Vector3 direccionCero = new Vector3(0,0,0);
+        Vector3 direccionCero = new Vector3(0, 0, 0);
 
         for (int i = -carreterasIniciales; i < carreterasIniciales; i++)
         {
             aux = Instantiate(seccionCarretera, new Vector3((20f) * i * Mathf.Cos(radianesGeneracion), 0, (20f) * i * Mathf.Sin(radianesGeneracion) - 0.01f), Quaternion.Euler(0, -(gradosGeneracion - 90), 0));
             MoverDireccionJugadores mover = aux.GetComponent<MoverDireccionJugadores>();
-            
+
             if (i < 0)
             {
-                mover.InicializarDireccion(true); 
+                mover.InicializarDireccion(true);
 
                 if (i == -1)
                 {
@@ -31,9 +31,9 @@ public class ManagerCarretera : MonoBehaviour
             }
             else if (i == 0)
             {
-                mover.SetDireccion(direccionCero); 
+                mover.SetDireccion(direccionCero);
             }
-            else 
+            else
             {
                 mover.InicializarDireccion(false);
             }
@@ -57,5 +57,15 @@ public class ManagerCarretera : MonoBehaviour
             GameObject objetoABorrar = instanciasCreadas.Dequeue();
             Destroy(objetoABorrar);
         }
+    }
+
+    public int GetCarrInic()
+    {
+        return carreterasIniciales;
+    }
+
+    public float GetGradosGen()
+    {
+        return gradosGeneracion;
     }
 }
