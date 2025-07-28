@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class SeccionTrigger : MonoBehaviour
 {
-    public GameObject seccionCarretera;
+    public List<GameObject> seccionCarretera;
     private ManagerCarretera manager;
 
     void Start()
@@ -20,7 +20,7 @@ public class SeccionTrigger : MonoBehaviour
             GameObject aux;
             int dist = manager.GetCarrInic();
             float radianesGeneracion = manager.GetGradosGen() * Mathf.Deg2Rad;
-            aux = Instantiate(seccionCarretera, new Vector3((19f) * dist * Mathf.Cos(radianesGeneracion), 0, (19f) * dist * Mathf.Sin(radianesGeneracion) - 0.01f), Quaternion.Euler(0, -(manager.GetGradosGen() - 90), 0));
+            aux = Instantiate(seccionCarretera[Random.Range(0,seccionCarretera.Count)], new Vector3((18f) * dist * Mathf.Cos(radianesGeneracion), 0, (18f) * dist * Mathf.Sin(radianesGeneracion) - 0.01f), Quaternion.Euler(0, -(manager.GetGradosGen() - 90), 0));
 
             // Para que las nuevas carreteras se puedan mover
             MoverDireccionJugadores mover = aux.GetComponent<MoverDireccionJugadores>();
