@@ -543,6 +543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 969863515}
   - component: {fileID: 969863514}
+  - component: {fileID: 969863516}
   m_Layer: 0
   m_Name: ManagerCarreteras
   m_TagString: Untagged
@@ -567,6 +568,9 @@ MonoBehaviour:
   - {fileID: 4872322775623662848, guid: 2094597685b59704eb9981c82f65ce66, type: 3}
   - {fileID: 4872322775623662848, guid: 1d0c30b04b58f1e40819cc97e6efeeaa, type: 3}
   - {fileID: 4872322775623662848, guid: 26c57eafb1f991d4596d15958c2d055a, type: 3}
+  - {fileID: 4872322775623662848, guid: a1ee87efa315bfd4b8ea92353b2d9027, type: 3}
+  - {fileID: 4872322775623662848, guid: bf3918ed04ef0c14ba14db8b109106dc, type: 3}
+  - {fileID: 4872322775623662848, guid: f1c8ecac3f062a140baa1769cf829a65, type: 3}
   gradosGeneracion: 90
 --- !u!4 &969863515
 Transform:
@@ -583,6 +587,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &969863516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969863513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d4707beb0e1be49a0be05fc8bef1db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidad: 7
 --- !u!4 &1265030246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1670256625, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -782,7 +799,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e435468999f46954d81b72d323d5357d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seccionCarretera: {fileID: 4872322775623662848, guid: ac442487d9f503d40ada084e15192c0f, type: 3}
+  seccionCarretera:
+  - {fileID: 4872322775623662848, guid: ac442487d9f503d40ada084e15192c0f, type: 3}
+  - {fileID: 4872322775623662848, guid: 2094597685b59704eb9981c82f65ce66, type: 3}
+  - {fileID: 4872322775623662848, guid: 1d0c30b04b58f1e40819cc97e6efeeaa, type: 3}
+  - {fileID: 4872322775623662848, guid: 26c57eafb1f991d4596d15958c2d055a, type: 3}
+  - {fileID: 4872322775623662848, guid: a1ee87efa315bfd4b8ea92353b2d9027, type: 3}
+  - {fileID: 4872322775623662848, guid: bf3918ed04ef0c14ba14db8b109106dc, type: 3}
+  - {fileID: 4872322775623662848, guid: f1c8ecac3f062a140baa1769cf829a65, type: 3}
 --- !u!1001 &1638379299
 PrefabInstance:
   m_ObjectHideFlags: 0
