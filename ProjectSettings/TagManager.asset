@@ -10,6 +10,7 @@ TagManager:
   - Negra
   - Ground
   - TriggerCarretera
+  - Coche
   layers:
   - Default
   - TransparentFX
