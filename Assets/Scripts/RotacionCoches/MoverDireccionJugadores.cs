@@ -4,11 +4,32 @@ using System.Collections.Generic;
 
 public class MoverDireccionJugadores : MonoBehaviour
 {
-    public float velocidad = 5f;
+    private float velocidad;
 
     private Vector3 direccionDeMovimiento;
 
     private Vector3 centro;
+
+    void Start()
+    {
+        GameObject manager = GameObject.Find("ManagerCarreteras");
+        if (manager != null)
+        {
+            VelocidadCarretera scriptVeloc = manager.GetComponent<VelocidadCarretera>();
+            if (scriptVeloc != null)
+            {
+                velocidad = scriptVeloc.GetVelocidad();
+            }
+            else
+            {
+                Debug.LogError("Script VelocidadCarretera No Encontrado");
+            }
+        }
+        else
+        {
+            Debug.LogError("Manager No Encontrado");
+        }
+    }
 
     public Vector3 GetDireccion()
     {

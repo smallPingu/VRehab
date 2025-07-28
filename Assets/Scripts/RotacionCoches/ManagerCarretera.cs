@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class ManagerCarretera : MonoBehaviour
 {
-    public GameObject seccionCarretera;
+    public List<GameObject> seccionCarretera;
     private int carreterasIniciales = 12;
     private Queue<GameObject> instanciasCreadas = new Queue<GameObject>();
     public float gradosGeneracion;
@@ -17,7 +17,7 @@ public class ManagerCarretera : MonoBehaviour
 
         for (int i = -carreterasIniciales; i < carreterasIniciales; i++)
         {
-            aux = Instantiate(seccionCarretera, new Vector3((20f) * i * Mathf.Cos(radianesGeneracion), 0, (20f) * i * Mathf.Sin(radianesGeneracion) - 0.01f), Quaternion.Euler(0, -(gradosGeneracion - 90), 0));
+            aux = Instantiate(seccionCarretera[Random.Range(0, seccionCarretera.Count)], new Vector3((20f) * i * Mathf.Cos(radianesGeneracion), 0, (20f) * i * Mathf.Sin(radianesGeneracion) - 0.01f), Quaternion.Euler(0, -(gradosGeneracion - 90), 0));
             MoverDireccionJugadores mover = aux.GetComponent<MoverDireccionJugadores>();
 
             if (i < 0)

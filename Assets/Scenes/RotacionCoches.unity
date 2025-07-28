@@ -562,8 +562,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5a115e3e775f64c8a03189de2f313f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seccionCarretera: {fileID: 4872322775623662848, guid: ac442487d9f503d40ada084e15192c0f, type: 3}
-  gradosGeneracion: 80
+  seccionCarretera:
+  - {fileID: 4872322775623662848, guid: ac442487d9f503d40ada084e15192c0f, type: 3}
+  - {fileID: 4872322775623662848, guid: 2094597685b59704eb9981c82f65ce66, type: 3}
+  - {fileID: 4872322775623662848, guid: 1d0c30b04b58f1e40819cc97e6efeeaa, type: 3}
+  - {fileID: 4872322775623662848, guid: 26c57eafb1f991d4596d15958c2d055a, type: 3}
+  gradosGeneracion: 90
 --- !u!4 &969863515
 Transform:
   m_ObjectHideFlags: 0
