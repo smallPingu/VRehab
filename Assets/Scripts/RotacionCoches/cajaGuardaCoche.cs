@@ -3,7 +3,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using System.Collections;
 using UnityEngine.Networking;
 
-public class cajaGuarda : MonoBehaviour
+public class cajaGuardaCoche : MonoBehaviour
 {
     private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
     private bool guardado;
@@ -42,10 +42,9 @@ public class cajaGuarda : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("usuario_id", 5);
-        form.AddField("tabla", "OrdenaColor");
+        form.AddField("tabla", "RotacionCoches");
         form.AddField("nivel", 3);
-        form.AddField("ovejas_blancas", GuardarPuntuacion.Instance.GetPuntBlancas());
-        form.AddField("ovejas_negras", GuardarPuntuacion.Instance.GetPuntNegras());
+        form.AddField("tiempo", GuardarPuntuacion.Instance.GetPuntBlancas());
 
         UnityWebRequest www = UnityWebRequest.Post("https://192.168.1.134/guardar_puntuacion.php", form);
 
