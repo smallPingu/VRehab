@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class ContadorArriba : MonoBehaviour
 {
+    public static ContadorArriba Instance;
     public GameObject[] modelosNumeros;
 
     public GameObject modeloDosPuntos;
@@ -14,6 +15,23 @@ public class ContadorArriba : MonoBehaviour
     private float tiempoTranscurrido = 0f;
     private int ultimoSegundoMostrado = -1;
     private List<GameObject> objetosMostradosActuales = new List<GameObject>();
+
+    private bool seguirContando;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        seguirContando = true;
+    }
 
     public void ReiniciarTemporizador()
     {
@@ -29,14 +47,17 @@ public class ContadorArriba : MonoBehaviour
 
     private void Update()
     {
-        tiempoTranscurrido += Time.deltaTime;
-
-        int segundoActual = Mathf.FloorToInt(tiempoTranscurrido);
-
-        if (segundoActual != ultimoSegundoMostrado)
+        if (seguirContando)
         {
-            ultimoSegundoMostrado = segundoActual;
-            ActualizarVisualizacion();
+            tiempoTranscurrido += Time.deltaTime;
+
+            int segundoActual = Mathf.FloorToInt(tiempoTranscurrido);
+
+            if (segundoActual != ultimoSegundoMostrado)
+            {
+                ultimoSegundoMostrado = segundoActual;
+                ActualizarVisualizacion();
+            }
         }
     }
 
@@ -118,5 +139,15 @@ public class ContadorArriba : MonoBehaviour
                 objetosMostradosActuales.Add(objetoInstanciado);
             }
         }
+    }
+
+    public float GetTiempoFinal()
+    {
+        return tiempoTranscurrido;
+    }
+
+    public void PararContador()
+    {
+        seguirContando = false;
     }
 }
