@@ -599,7 +599,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 993877431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e0629b1823242748bd3695724b5e77b, type: 3}
+  m_Script: {fileID: 11500000, guid: f7333653a4a47d642af623249ac708d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1217600372
@@ -1053,6 +1053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b73d491d8da014c87d05cf41b8795c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocidadAguja: 2
 --- !u!1001 &2079157319
 PrefabInstance:
   m_ObjectHideFlags: 0
