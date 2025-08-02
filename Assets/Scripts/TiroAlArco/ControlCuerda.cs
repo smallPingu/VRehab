@@ -20,6 +20,11 @@ public class ControlCuerda : MonoBehaviour
 
     private Transform interactuador;
 
+    private float fuerza;
+
+    public UnityEvent OnTirarCuerda;
+    public UnityEvent<float> OnSoltarCuerda;
+
     private void Awake()
     {
         interactableVR = medioCuerdaAgarrar.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
@@ -33,6 +38,9 @@ public class ControlCuerda : MonoBehaviour
 
     private void ResetearCuerda(SelectExitEventArgs arg0)
     {
+        OnSoltarCuerda?.Invoke(fuerza);
+        fuerza = 0;
+
         interactuador = null;
         medioCuerdaAgarrar.localPosition = Vector3.zero;
         medioCuerdaVisual.localPosition = Vector3.zero;
@@ -43,6 +51,7 @@ public class ControlCuerda : MonoBehaviour
     private void PrepararCuerda(SelectEnterEventArgs arg0)
     {
         interactuador = arg0.interactorObject.transform;
+        OnTirarCuerda?.Invoke();
     }
 
     private void Update()
@@ -63,17 +72,25 @@ public class ControlCuerda : MonoBehaviour
             // Cuerda Hasta Limite
             if (puntoMedioLocal.z < 0 && puntoMedioLocalZAbs >= limiteEstirarCuerda)
             {
+                fuerza = 1;
                 //Vector3 direction = puntoMedio.TransformDirection(new Vector3(0, 0, puntoMedioLocal.z));
                 medioCuerdaVisual.localPosition = new Vector3(0, 0, -limiteEstirarCuerda);
             }
 
-            // EstirarCuerda(puntoMedioLocalZAbs, puntoMedioLocal);
+            // Estirar Cuerda
             if (puntoMedioLocal.z < 0 && puntoMedioLocalZAbs < limiteEstirarCuerda)
             {
+                fuerza = Remap(puntoMedioLocalZAbs, 0, limiteEstirarCuerda, 0, 1);
                 medioCuerdaVisual.localPosition = new Vector3(0, 0, puntoMedioLocal.z);
             }
 
             cuerdaRenderer.InicializarCuerda(medioCuerdaVisual.position);
         }
+    }
+
+    // Valor de fuerza nuevo [0 a 1], si está entre los límites
+    private float Remap(float valor, int desdeMin, float desdeMax, int hastaMin, int hastaMax)
+    {
+        return (valor - desdeMin) / (desdeMax - desdeMin) * (hastaMax - hastaMin) + hastaMin;
     }
 }
