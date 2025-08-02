@@ -5,7 +5,10 @@ using UnityEngine;
 public class ControlFlecha : MonoBehaviour
 {
     [SerializeField]
-    private GameObject puntoMedioVisual;
+    private GameObject puntoMedioVisual, flechaLanza, spawnFlecha;
+
+    [SerializeField]
+    private float velocidadMaxima = 10f;
 
     public void PrepararFlecha()
     {
@@ -15,6 +18,12 @@ public class ControlFlecha : MonoBehaviour
     public void SolatFlecha(float fuerza)
     {
         puntoMedioVisual.SetActive(false);
-        Debug.Log($"La fuerza de la flecha es {fuerza}");
+
+        GameObject flecha = Instantiate(flechaLanza);
+        flecha.transform.position = spawnFlecha.transform.position;
+        flecha.transform.rotation = puntoMedioVisual.transform.rotation;
+        Rigidbody rb = flecha.GetComponent<Rigidbody>();
+        rb.AddForce(puntoMedioVisual.transform.forward * fuerza * velocidadMaxima, ForceMode.Impulse);
+
     }
 }
