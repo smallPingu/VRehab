@@ -15,7 +15,7 @@ public class ControlFlecha : MonoBehaviour
         puntoMedioVisual.SetActive(true);
     }
 
-    public void SolatFlecha(float fuerza)
+    public void SolarFlecha(float fuerza)
     {
         puntoMedioVisual.SetActive(false);
 

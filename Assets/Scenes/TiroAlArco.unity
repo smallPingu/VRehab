@@ -883,6 +883,14 @@ PrefabInstance:
       propertyPath: 'm_Colliders.Array.data[0]'
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1735821426945726852, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
+      propertyPath: limiteEstirarCuerda
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735821426945726852, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
+      propertyPath: OnSoltarCuerda.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SolarFlecha
+      objectReference: {fileID: 0}
     - target: {fileID: 2348835498135801950, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
       propertyPath: m_Layer
       value: 0

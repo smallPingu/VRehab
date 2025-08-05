@@ -61,27 +61,27 @@ public class ControlCuerda : MonoBehaviour
             Vector3 puntoMedioLocal = puntoMedio.InverseTransformPoint(medioCuerdaAgarrar.position); // localPosition
 
             //get the offset
-            float puntoMedioLocalZAbs = Mathf.Abs(puntoMedioLocal.z);
+            float puntoMedioLocalXAbs = Mathf.Abs(puntoMedioLocal.x);
 
             // Cuerda Hasta Inicio
-            if (puntoMedioLocal.z >= 0)
+            if (puntoMedioLocal.x >= 0)
             {
                 medioCuerdaVisual.localPosition = Vector3.zero;
             }
 
             // Cuerda Hasta Limite
-            if (puntoMedioLocal.z < 0 && puntoMedioLocalZAbs >= limiteEstirarCuerda)
+            if (puntoMedioLocal.x < 0 && puntoMedioLocalXAbs >= limiteEstirarCuerda)
             {
                 fuerza = 1;
                 //Vector3 direction = puntoMedio.TransformDirection(new Vector3(0, 0, puntoMedioLocal.z));
-                medioCuerdaVisual.localPosition = new Vector3(0, 0, -limiteEstirarCuerda);
+                medioCuerdaVisual.localPosition = new Vector3(-limiteEstirarCuerda, 0, 0);
             }
 
             // Estirar Cuerda
-            if (puntoMedioLocal.z < 0 && puntoMedioLocalZAbs < limiteEstirarCuerda)
+            if (puntoMedioLocal.x < 0 && puntoMedioLocalXAbs < limiteEstirarCuerda)
             {
-                fuerza = Remap(puntoMedioLocalZAbs, 0, limiteEstirarCuerda, 0, 1);
-                medioCuerdaVisual.localPosition = new Vector3(0, 0, puntoMedioLocal.z);
+                fuerza = Remap(puntoMedioLocalXAbs, 0, limiteEstirarCuerda, 0, 1);
+                medioCuerdaVisual.localPosition = new Vector3(puntoMedioLocal.x, 0, 0);
             }
 
             cuerdaRenderer.InicializarCuerda(medioCuerdaVisual.position);
