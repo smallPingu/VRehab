@@ -824,19 +824,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4293375745631372, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4293375745631372, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4293375745631372, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4293375745631372, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4293375745631372, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -848,7 +848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4293375745631372, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 1007985428585803814, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
       propertyPath: m_Layer
@@ -1012,7 +1012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124607325119407850, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5124607325119407850, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
       propertyPath: m_TwoHandedRotationMode
@@ -1143,12 +1143,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8562090124691141136, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
+      propertyPath: m_MovementType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562090124691141136, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
       propertyPath: m_FarAttachMode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8562090124691141136, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
+      propertyPath: m_UseDynamicAttach
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562090124691141136, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
       propertyPath: m_MatchAttachRotation
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562090124691141136, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
+      propertyPath: m_DistanceCalculationMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9054454963187257838, guid: aaa3e33bc6ed8804693be72edf1e58a6, type: 3}
       propertyPath: m_Layer
