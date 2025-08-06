@@ -15,15 +15,14 @@ public class ControlFlecha : MonoBehaviour
         puntoMedioVisual.SetActive(true);
     }
 
-    public void SolarFlecha(float fuerza)
+    public void SoltarFlecha(float fuerza)
     {
-        puntoMedioVisual.SetActive(false);
-
         GameObject flecha = Instantiate(flechaLanza);
         flecha.transform.position = spawnFlecha.transform.position;
         flecha.transform.rotation = puntoMedioVisual.transform.rotation;
         Rigidbody rb = flecha.GetComponent<Rigidbody>();
         rb.AddForce(puntoMedioVisual.transform.forward * fuerza * velocidadMaxima, ForceMode.Impulse);
 
+        puntoMedioVisual.SetActive(false);
     }
 }
