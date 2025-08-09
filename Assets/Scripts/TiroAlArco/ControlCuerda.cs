@@ -20,7 +20,13 @@ public class ControlCuerda : MonoBehaviour
 
     private Transform interactuador;
 
-    private float fuerza;
+    private float fuerza, fuerzaAnterior;
+
+    [SerializeField]
+    private float limiteAudioTensar = 0.001f;
+
+    [SerializeField]
+    private AudioSource tensarAudio;
 
     public UnityEvent OnTirarCuerda;
     public UnityEvent<float> OnSoltarCuerda;
@@ -40,6 +46,9 @@ public class ControlCuerda : MonoBehaviour
     {
         OnSoltarCuerda?.Invoke(fuerza);
         fuerza = 0;
+        fuerzaAnterior = 0;
+        tensarAudio.pitch = 1;
+        tensarAudio.Stop();
 
         interactuador = null;
         medioCuerdaAgarrar.localPosition = Vector3.zero;
@@ -63,15 +72,22 @@ public class ControlCuerda : MonoBehaviour
             //get the offset
             float puntoMedioLocalXAbs = Mathf.Abs(puntoMedioLocal.x);
 
+            fuerzaAnterior = fuerza;
+
             // Cuerda Hasta Inicio
             if (puntoMedioLocal.x >= 0)
             {
+                tensarAudio.pitch = 1;
+                tensarAudio.Stop();
+
+                fuerza = 0;
                 medioCuerdaVisual.localPosition = Vector3.zero;
             }
 
             // Cuerda Hasta Limite
             if (puntoMedioLocal.x < 0 && puntoMedioLocalXAbs >= limiteEstirarCuerda)
             {
+                tensarAudio.Pause();
                 fuerza = 1;
                 //Vector3 direction = puntoMedio.TransformDirection(new Vector3(0, 0, puntoMedioLocal.z));
                 medioCuerdaVisual.localPosition = new Vector3(-limiteEstirarCuerda, 0, 0);
@@ -80,8 +96,31 @@ public class ControlCuerda : MonoBehaviour
             // Estirar Cuerda
             if (puntoMedioLocal.x < 0 && puntoMedioLocalXAbs < limiteEstirarCuerda)
             {
+                if (!tensarAudio.isPlaying && fuerza <= 0.01f)
+                {
+                    tensarAudio.Play();
+                }
+
                 fuerza = Remap(puntoMedioLocalXAbs, 0, limiteEstirarCuerda, 0, 1);
                 medioCuerdaVisual.localPosition = new Vector3(puntoMedioLocal.x, 0, 0);
+
+                // Dependiendo de si tensamos o destensamos la cuerda, el audio se reproducirá normal o en reverso
+                if (Math.Abs(fuerza - fuerzaAnterior) > limiteAudioTensar)
+                {
+                    if (fuerza < fuerzaAnterior)
+                    {
+                        tensarAudio.pitch = -1;
+                    }
+                    else
+                    {
+                        tensarAudio.pitch = 1;
+                    }
+                    tensarAudio.UnPause();
+                }
+                else
+                {
+                    tensarAudio.Pause();
+                }
             }
 
             cuerdaRenderer.InicializarCuerda(medioCuerdaVisual.position);

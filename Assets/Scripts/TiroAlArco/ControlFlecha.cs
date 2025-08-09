@@ -10,6 +10,9 @@ public class ControlFlecha : MonoBehaviour
     [SerializeField]
     private float velocidadMaxima = 10f;
 
+    [SerializeField]
+    private AudioSource soltarAudio;
+
     public void PrepararFlecha()
     {
         puntoMedioVisual.SetActive(true);
@@ -17,6 +20,8 @@ public class ControlFlecha : MonoBehaviour
 
     public void SoltarFlecha(float fuerza)
     {
+        soltarAudio.Play();
+        
         GameObject flecha = Instantiate(flechaLanza);
         flecha.transform.position = spawnFlecha.transform.position;
         flecha.transform.rotation = puntoMedioVisual.transform.rotation;
