@@ -4,7 +4,7 @@ using UnityEngine;
 public class GeneradorDeParticulas : MonoBehaviour
 {
     public GameObject prefabParticula;
-    public int numeroDeParticulas = 10;
+    private int numeroDeParticulas = 10;
     public float tiempoDeEsperaInicial = 0.5f;
     public float decrementoDeEspera = 0.05f;
     public float tiempoDeEsperaMinimo = 0.1f;
@@ -14,6 +14,9 @@ public class GeneradorDeParticulas : MonoBehaviour
 
     void Start()
     {
+
+        numeroDeParticulas = PuntosDiana.Instance.PuntuacionFinal;
+
         posicionInicial = transform.position;
         StartCoroutine(GenerarParticulasConPausa());
     }

@@ -231,5 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05ea8a8cb4032a4482747383c4ea9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDianaMuerte:
+    m_PersistentCalls:
+      m_Calls: []
   salud: 1
   audioSource: {fileID: 5000661397590427837}

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events; // Requerido para UnityEvent
 
 public interface IHittable
 {
@@ -7,15 +8,15 @@ public interface IHittable
 
 public class Diana : MonoBehaviour, IHittable
 {
-    private Rigidbody rb;
+    public UnityEvent OnDianaMuerte;
     
-    [SerializeField]
-    private int salud = 1;
-
-    [SerializeField]
-    private AudioSource audioSource;
-
+    [Header("Configuración")]
+    [SerializeField] private int salud = 1;
+    [SerializeField] private AudioSource audioSource;
+    
+    private Rigidbody rb;
     private const string etiquetaDeFlecha = "Flecha";
+    private bool muerto = false;
 
     private void Awake()
     {
@@ -32,9 +33,16 @@ public class Diana : MonoBehaviour, IHittable
 
     public void GetHit()
     {
+        if (muerto) return;
+
         salud--;
+
         if (salud <= 0)
         {
+            muerto = true;
+
+            OnDianaMuerte.Invoke();
+
             if (rb != null)
             {
                 rb.isKinematic = false;
