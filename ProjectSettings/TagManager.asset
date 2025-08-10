@@ -11,14 +11,16 @@ TagManager:
   - Ground
   - TriggerCarretera
   - Coche
+  - Arco
+  - Flecha
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Arco
   - Water
   - UI
-  - 
+  - Flecha
   - 
   - 
   - 
