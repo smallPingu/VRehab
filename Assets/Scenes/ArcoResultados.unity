@@ -658,11 +658,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabParticula: {fileID: 4247262605913668938, guid: b80a1e45594d1a9498e506d85349da9b, type: 3}
-  numeroDeParticulas: 100
   tiempoDeEsperaInicial: 1
   decrementoDeEspera: 0.05
   tiempoDeEsperaMinimo: 0.02
   radioDeCirculo: 10
+  numberModels:
+  - {fileID: 919132149155446097, guid: 8c8f3781b38bee5428b933eaf455ebf6, type: 3}
+  - {fileID: 919132149155446097, guid: ca4dfbe30f0161b4584dea67af3b8910, type: 3}
+  - {fileID: 919132149155446097, guid: 9ad13ab6e93e15d4e90036a4a47cb39e, type: 3}
+  - {fileID: 919132149155446097, guid: 474250488d929514f83d179b08a84663, type: 3}
+  - {fileID: 919132149155446097, guid: 9da4c942e939b2546a04ebbe5aadd381, type: 3}
+  - {fileID: 919132149155446097, guid: 27fda00739fbc484f9535a6ec3d67f25, type: 3}
+  - {fileID: 919132149155446097, guid: 741867c0fee3eb942a0b3dc5de0e07e4, type: 3}
+  - {fileID: 919132149155446097, guid: b792d9097b844174a8aaec626e0552cb, type: 3}
+  - {fileID: 919132149155446097, guid: a2ead2259df18724ab6ca8c2788aa72c, type: 3}
+  - {fileID: 919132149155446097, guid: 8177086b591819f43a15ae5154379236, type: 3}
+  displayPoint: {fileID: 932267218}
 --- !u!4 &932267218
 Transform:
   m_ObjectHideFlags: 0
