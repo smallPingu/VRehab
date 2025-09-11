@@ -2,19 +2,35 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using System.Collections;
 using UnityEngine.Networking;
+using System.Text;
 
-public class cajaGuardaArco : MonoBehaviour
+public class CajaGuardaArco : MonoBehaviour
 {
     private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
     private bool guardado;
+    private float tiempoInicioJuego;
+
+    [System.Serializable]
+    private class DatosPuntuArco
+    {
+        public string juego;
+        public float duracion;
+        public string platforma;
+        public string versionJuego;
+        public int dianas;
+    }
 
     void Awake()
     {
         guardado = false;
         grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
-
         grabInteractable.selectEntered.AddListener(OnGrab);
         grabInteractable.selectExited.AddListener(OnRelease);
+    }
+
+    void Start()
+    {
+        tiempoInicioJuego = Time.time;
     }
 
     private void OnGrab(SelectEnterEventArgs args)
@@ -27,7 +43,7 @@ public class cajaGuardaArco : MonoBehaviour
         Debug.Log($"{gameObject.name} was released by {args.interactorObject.transform.name}");
         if (!guardado)
         {
-            SubirPuntuacion();
+            StartCoroutine(SubirPuntuacion());
             guardado = true;
         }
     }
@@ -40,21 +56,52 @@ public class cajaGuardaArco : MonoBehaviour
 
     IEnumerator SubirPuntuacion()
     {
-        WWWForm form = new WWWForm();
-        form.AddField("usuario_id", 5);
-        form.AddField("tabla", "TiroAlArco");
-        form.AddField("puntos", 3);
-        form.AddField("tiempo", 10);
+        string token = PlayerPrefs.GetString("jwt_token", null);
+        if (string.IsNullOrEmpty(token))
+        {
+            Debug.LogError("No se encontró token de autenticación. El usuario debe iniciar sesión.");
+            yield break;
+        }
 
-        UnityWebRequest www = UnityWebRequest.Post("https://192.168.1.134/guardar_puntuacion.php", form);
+        DatosPuntuArco dataPuntu = new DatosPuntuArco
+        {
+            juego = "TiroAlArco",
+            duracion = Time.time - tiempoInicioJuego,
+            platforma = Application.platform.ToString(),
+            versionJuego = "1.0.0",
+            dianas = GuardarPuntuacion.Instance.GetDianasAcertadas()
+        };
+
+        string jsonData = JsonUtility.ToJson(dataPuntu);
+        Debug.Log("Enviando JSON: " + jsonData);
+
+        string url = "http://localhost:3000/api/puntuaciones";
+
+        using UnityWebRequest www = new(url, "POST");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+        www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        www.downloadHandler = new DownloadHandlerBuffer();
+
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SetRequestHeader("Authorization", "Bearer " + token);
 
         www.certificateHandler = new AcceptAllCertificates();
+
         yield return www.SendWebRequest();
 
-        Debug.Log(www.downloadHandler.text);
+        // 5. Procesar la respuesta
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"Error al subir puntuación: {www.error}");
+            Debug.LogError($"Respuesta del servidor: {www.downloadHandler.text}");
+        }
+        else
+        {
+            Debug.Log("Puntuación de Tiro al Arco subida con éxito!");
+            Debug.Log($"Respuesta del servidor: {www.downloadHandler.text}");
+        }
     }
 
-    // Clase interna para ignorar la validación SSL
     private class AcceptAllCertificates : CertificateHandler
     {
         protected override bool ValidateCertificate(byte[] certificateData)

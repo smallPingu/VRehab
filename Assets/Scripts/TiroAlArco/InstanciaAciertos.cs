@@ -28,6 +28,7 @@ public class InstanciaAciertos : MonoBehaviour
         if (PuntosDiana.Instance != null)
         {
             numeroDeParticulas = PuntosDiana.Instance.PuntuacionFinal;
+            GuardarPuntuacion.Instance?.GuardarDianasAcertadas(PuntosDiana.Instance.PuntuacionFinal);
         }
         else
         {

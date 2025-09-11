@@ -34,8 +34,10 @@ public class CountdownManager : MonoBehaviour
         // Store data
         if (GuardarPuntuacion.Instance != null)
         {
-            GuardarPuntuacion.Instance.GuardarNegras(contadorNegras.GetPuntuacion());
-            GuardarPuntuacion.Instance.GuardarBlancas(contadorBlancas.GetPuntuacion());
+            GuardarPuntuacion.Instance.GuardarPuntNegras(contadorNegras.GetPuntuacion());
+            GuardarPuntuacion.Instance.GuardarPuntBlancas(contadorBlancas.GetPuntuacion());
+
+            GuardarPuntuacion.Instance.GuardarTiempoOvejas(startNumber);
         }
 
         UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneName);

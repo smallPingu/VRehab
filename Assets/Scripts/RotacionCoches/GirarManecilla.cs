@@ -18,6 +18,11 @@ public class GirarManecilla : MonoBehaviour
             return;
         }
 
+        if (GuardarPuntuacion.Instance != null)
+        {//////////////////////////////////////////// PuntosCoches ///////////////////////////////////////////////
+            GuardarPuntuacion.Instance.GuardarTiempoCoches(ContadorArriba.Instance.GetTiempoFinal());
+        }
+
         anguloObjetivo = ContadorArriba.Instance.GetTiempoFinal() * ROTACION_POR_SEGUNDO;
 
         float anguloObjetivoFinal = anguloObjetivo + ANGULO_INICIAL;

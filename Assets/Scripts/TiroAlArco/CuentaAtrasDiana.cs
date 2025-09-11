@@ -39,6 +39,7 @@ public class CuentaAtrasDiana : MonoBehaviour
 
         if (PuntosDiana.Instance != null)
         {
+            GuardarPuntuacion.Instance.GuardarTiempoArco(startNumber);
             PuntosDiana.Instance.GuardarPuntuacionFinal(contador.GetPuntuacion());
         }
 
