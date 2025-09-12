@@ -93,5 +93,7 @@ public class ManagerAuth : MonoBehaviour
         {
             Debug.LogWarning("No se encontró ningún token para borrar.");
         }
+
+        controladorMensaje?.MostrarMensaje("Bye Bye!");
     }
 }
