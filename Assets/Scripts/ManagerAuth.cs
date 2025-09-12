@@ -8,6 +8,8 @@ public class ManagerAuth : MonoBehaviour
     public TMP_InputField emailInputField;
     public TMP_InputField passwordInputField;
 
+    public TextoFade controladorMensaje; 
+
     private string loginUrl = "http://localhost:3000/api/auth/login";
 
     [System.Serializable]
@@ -18,9 +20,16 @@ public class ManagerAuth : MonoBehaviour
     }
 
     [System.Serializable]
+    private class UserData
+    {
+        public string name;
+    }
+
+    [System.Serializable]
     private class TokenResponse
     {
         public string token;
+        public UserData user;
     }
 
     public void IniciarLogin()
@@ -35,11 +44,7 @@ public class ManagerAuth : MonoBehaviour
 
     private IEnumerator LoginCoroutine(string email, string password)
     {
-        LoginData data = new()
-        {
-            email = email,
-            password = password
-        };
+        LoginData data = new() { email = email, password = password };
         string jsonData = JsonUtility.ToJson(data);
 
         using UnityWebRequest www = new UnityWebRequest(loginUrl, "POST");
@@ -55,6 +60,7 @@ public class ManagerAuth : MonoBehaviour
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Error en el login: " + www.error);
+            controladorMensaje?.MostrarMensaje("Error de conexión");
         }
         else
         {
@@ -63,8 +69,12 @@ public class ManagerAuth : MonoBehaviour
 
             PlayerPrefs.SetString("jwt_token", tokenResponse.token);
             PlayerPrefs.Save();
+            
+            string nombreUsuario = tokenResponse.user.name;
 
-            Debug.Log("¡Login exitoso! Token guardado en PlayerPrefs.");
+            Debug.Log($"¡Login exitoso para {nombreUsuario}! Token guardado.");
+
+            controladorMensaje?.MostrarMensaje($"Bienvenido, {nombreUsuario}");
         }
     }
 
