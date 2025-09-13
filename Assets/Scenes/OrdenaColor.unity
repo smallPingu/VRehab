@@ -173,7 +173,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &11470829
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
   objetosAInstanciar:
   - {fileID: 11115799}
   - {fileID: 779100830}
-  radioDelCirculo: 25
+  radioDelCirculo: 17
   alturaMinima: 10.9
   alturaMaxima: 24.9
   rotacionAleatoria: 0
@@ -322,15 +322,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b4593d8e40663eb48babf90935aabc33, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.35
+      value: -396
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b4593d8e40663eb48babf90935aabc33, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.68
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b4593d8e40663eb48babf90935aabc33, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.43
+      value: 359
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b4593d8e40663eb48babf90935aabc33, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1402,7 +1402,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1001 &881949665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1695,15 +1695,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b4593d8e40663eb48babf90935aabc33, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.82
+      value: -394.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b4593d8e40663eb48babf90935aabc33, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.68
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b4593d8e40663eb48babf90935aabc33, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.87
+      value: 358.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b4593d8e40663eb48babf90935aabc33, type: 3}
       propertyPath: m_LocalRotation.w
