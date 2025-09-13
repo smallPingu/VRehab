@@ -16,6 +16,12 @@ public class CuentaAtrasDiana : MonoBehaviour
 
     private List<GameObject> currentDigits = new List<GameObject>();
 
+    void Awake()
+    {
+        // PlayerPrefs
+        //    Velocidad Juego
+    }
+
     void Start()
     {
         if (contador == null || generador == null || displayPoint == null)

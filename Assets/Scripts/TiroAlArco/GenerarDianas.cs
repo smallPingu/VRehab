@@ -6,23 +6,25 @@ public class GeneradorDeDianas : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] dianaPrefabs;
-
     [SerializeField]
     private int cantidadDeDianas = 5;
-
     [SerializeField]
     private float radioDeGeneracion = 5f;
-
     [SerializeField]
     private float retrasoEntreRondas = 3f;
+
+    [SerializeField]
+    private int nivelInicial = 1;
 
     private Vector3 puntoCentral;
     private List<GameObject> dianasInstanciadas = new List<GameObject>();
     private int dianasVivas;
+    private int nivelActual;
 
     private void Start()
     {
         puntoCentral = transform.position;
+        nivelActual = Mathf.Max(1, nivelInicial);
         GenerarRonda();
     }
 
@@ -33,13 +35,22 @@ public class GeneradorDeDianas : MonoBehaviour
             Debug.LogError("Prefabs no asignados");
             return;
         }
-        
+
+        Debug.Log($" Iniciando Nivel: {nivelActual}");
+
         dianasVivas = cantidadDeDianas;
         List<int> weightedPrefabIndices = new List<int>();
         for (int i = 0; i < dianaPrefabs.Length; i++)
         {
-            int weight = dianaPrefabs.Length - i;
-            for (int j = 0; j < weight; j++)
+            int pesoBase = dianaPrefabs.Length - i;
+
+            int bonusDificultad = i * (nivelActual / 2);
+
+            int pesoFinal = pesoBase + bonusDificultad;
+            
+            pesoFinal = Mathf.Max(1, pesoFinal);
+
+            for (int j = 0; j < pesoFinal; j++)
             {
                 weightedPrefabIndices.Add(i);
             }
@@ -58,11 +69,9 @@ public class GeneradorDeDianas : MonoBehaviour
             );
 
             Quaternion rotacionDeInstanciacion = Quaternion.LookRotation(puntoCentral - posicionDeInstanciacion);
-
             GameObject dianaInstanciada = Instantiate(prefabElegido, posicionDeInstanciacion, rotacionDeInstanciacion);
             
             dianaInstanciada.GetComponent<Diana>().OnDianaMuerte.AddListener(NotificarMuerteDeDiana);
-
             dianasInstanciadas.Add(dianaInstanciada);
         }
     }
@@ -78,6 +87,7 @@ public class GeneradorDeDianas : MonoBehaviour
 
     private IEnumerator CicloDeReinicio()
     {
+        Debug.Log($"¡Nivel {nivelActual} completado!");
         yield return new WaitForSeconds(retrasoEntreRondas);
         foreach (GameObject diana in dianasInstanciadas)
         {
@@ -87,6 +97,7 @@ public class GeneradorDeDianas : MonoBehaviour
             }
         }
         dianasInstanciadas.Clear();
+        nivelActual++;
         GenerarRonda();
     }
 }

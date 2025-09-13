@@ -15,6 +15,13 @@ public class CountdownManager : MonoBehaviour
     public Contador contadorBlancas;
     public string nextSceneName;
 
+    void Awake()
+    {
+        // PlayerPrefs 
+        //    Velocidad Generacion
+        //    Duracion
+    }
+
     void Start()
     {
         StartCoroutine(Countdown());
