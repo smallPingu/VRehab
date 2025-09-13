@@ -3,16 +3,16 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class CerrarJuego : MonoBehaviour
 {
-    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable interactable;
+    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable interactable;
 
     void Awake()
     {
-        interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>();
+        interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
 
-        interactable.activated.AddListener(CerrarLaAplicacion);
+        interactable.selectExited.AddListener(CerrarLaAplicacion);
     }
 
-    private void CerrarLaAplicacion(ActivateEventArgs args)
+    private void CerrarLaAplicacion(SelectExitEventArgs args)
     {
         Debug.Log("Se ha activado el objeto para cerrar el juego.");
 
@@ -23,5 +23,5 @@ public class CerrarJuego : MonoBehaviour
         #endif
     }
 
-    void OnDestroy() => interactable.activated.RemoveListener(CerrarLaAplicacion);
+    void OnDestroy() => interactable.selectExited.RemoveListener(CerrarLaAplicacion);
 }
