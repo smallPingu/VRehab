@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6036489206037885730}
   - component: {fileID: 3312332255504812038}
   - component: {fileID: 8855616396335267507}
+  - component: {fileID: -7253635519324759065}
   m_Layer: 0
   m_Name: Moneda
   m_TagString: Untagged
@@ -28,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4014912920035447341}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: -0.07800001, y: 0.61800003, z: 7.49}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!33 &350492635046006333
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -42,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4014912920035447341}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 7692636460279891284, guid: c87a7b7a8b5e3904f87cff77efca902d, type: 3}
 --- !u!23 &6036489206037885730
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 5796830716f41a94b98720183edb2365, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,7 +108,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.79
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8855616396335267507
 Rigidbody:
@@ -136,3 +137,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-7253635519324759065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4014912920035447341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d9fa7f6d3951d45878fd4be939e723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  valorPuntuacion: 1
+  efectoDesaparecer: {fileID: 6176640409488591346, guid: a6fb188031ab79d41a2f7f757b7553dd, type: 3}
+  sonidoAlRecoger: {fileID: 8300000, guid: 6288cead6cae9c14aa2ccac2768b3ded, type: 3}
