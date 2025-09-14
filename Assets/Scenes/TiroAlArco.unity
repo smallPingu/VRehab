@@ -1599,6 +1599,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objetoARecordar: {fileID: 6073058443348856600}
+  sonido: {fileID: 1381702203}
+  prefabParticulasReset: {fileID: 0}
 --- !u!1 &1452077970
 GameObject:
   m_ObjectHideFlags: 0
