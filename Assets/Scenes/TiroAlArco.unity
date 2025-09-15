@@ -1177,6 +1177,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0446851987dc86b46a05cac1fa957207, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3cac8108b4469964c9fd6ef414bfc5b7, type: 2}
     - target: {fileID: 919132149155446097, guid: 0446851987dc86b46a05cac1fa957207, type: 3}
       propertyPath: m_Name
       value: Mesa
@@ -1280,7 +1284,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40d5f39ae0668b14f9d71f56c2981be7, type: 2}
+  - {fileID: 2100000, guid: 9d60a7cd1f9bc304583f946bf3e7d48d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
