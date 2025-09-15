@@ -67,14 +67,20 @@ public class ManagerAuth : MonoBehaviour
             string jsonResponse = www.downloadHandler.text;
             TokenResponse tokenResponse = JsonUtility.FromJson<TokenResponse>(jsonResponse);
 
-            PlayerPrefs.SetString("jwt_token", tokenResponse.token);
-            PlayerPrefs.Save();
-            
-            string nombreUsuario = tokenResponse.user.name;
+            if (tokenResponse != null)
+            {
+                PlayerPrefs.SetString("jwt_token", tokenResponse.token);
+                PlayerPrefs.Save();
+                
+                string nombreUsuario = tokenResponse.user.name;
 
-            Debug.Log($"¡Login exitoso para {nombreUsuario}! Token guardado.");
-
-            controladorMensaje?.MostrarMensaje($"Bienvenido, {nombreUsuario}");
+                Debug.Log($"¡Login exitoso para {nombreUsuario}! Token guardado.");
+                controladorMensaje?.MostrarMensaje($"Bienvenido, {nombreUsuario}");
+            }
+            else
+            {
+                Debug.LogError("Error al deserializar la respuesta JSON.");
+            }
         }
     }
 

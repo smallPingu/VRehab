@@ -21,6 +21,8 @@ public class GeneradorDeDianas : MonoBehaviour
     private int dianasVivas;
     private int nivelActual;
 
+    public ContadorPuntuacion contador;
+
     private void Start()
     {
         puntoCentral = transform.position;
@@ -79,6 +81,7 @@ public class GeneradorDeDianas : MonoBehaviour
     public void NotificarMuerteDeDiana()
     {
         dianasVivas--;
+        contador.IncrementarPuntuacion();
         if (dianasVivas <= 0)
         {
             StartCoroutine(CicloDeReinicio());

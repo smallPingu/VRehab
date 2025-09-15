@@ -765,6 +765,7 @@ MonoBehaviour:
   radioDeGeneracion: 10
   retrasoEntreRondas: 1.5
   nivelInicial: 1
+  contador: {fileID: 433334218}
 --- !u!1 &756192406
 GameObject:
   m_ObjectHideFlags: 0
