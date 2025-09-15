@@ -1,37 +1,62 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// Asegura que el GameObject siempre tenga un componente Rigidbody
+[RequireComponent(typeof(Rigidbody))]
 public class CocheSalto : MonoBehaviour
 {
-    public InputActionProperty jumpAction; // Asignar acción (por ejemplo, 'primaryButton')
-    public float jumpForce = 5f;
+    public InputActionProperty jumpAction;
+    
+    public float jumpForce = 7f;
+
+    public Transform groundCheck;
+    
+    public float groundCheckRadius = 0.2f;
+    
+    public LayerMask groundLayer;
+
     private Rigidbody rb;
+    private bool isGrounded;
 
-    private bool isGrounded = true;
-
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        if (rb == null)
-        {
-            Debug.LogError("No Rigidbody found on this GameObject!");
-        }
+    }
+
+    void OnEnable()
+    {
+        jumpAction.action.performed += PerformJump;
+    }
+
+    void OnDisable()
+    {
+        jumpAction.action.performed -= PerformJump;
     }
 
     void Update()
     {
-        if (jumpAction.action.WasPressedThisFrame() && isGrounded)
+        CheckIfGrounded();
+    }
+
+    private void CheckIfGrounded()
+    {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+    }
+
+    private void PerformJump(InputAction.CallbackContext context)
+    {
+        if (isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnDrawGizmosSelected()
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (groundCheck != null)
         {
-            isGrounded = true;
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
     }
 }

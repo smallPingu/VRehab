@@ -206,7 +206,7 @@ MonoBehaviour:
   objetosAInstanciar:
   - {fileID: 11115799}
   - {fileID: 779100830}
-  radioDelCirculo: 17
+  radioDelCirculo: 15
   alturaMinima: 10.9
   alturaMaxima: 24.9
   rotacionAleatoria: 0

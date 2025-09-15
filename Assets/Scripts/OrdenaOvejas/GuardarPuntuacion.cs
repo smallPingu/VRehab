@@ -6,7 +6,7 @@ public class GuardarPuntuacion : MonoBehaviour
 
     private int puntuacionNegras;
     private int puntuacionBlancas;
-    private float puntuacionCoches;
+    private int puntuacionCoches;
     private int dianasAcertadas;
     
     private float tiempoOvejas;
@@ -62,12 +62,12 @@ public class GuardarPuntuacion : MonoBehaviour
 
     #region Juego de RotacionCoches
 
-    public void GuardarPuntCoches(float punt)
+    public void GuardarPuntCoches(int punt)
     {
         puntuacionCoches = punt;
     }
 
-    public float GetPuntCoches()
+    public int GetPuntCoches()
     {
         return puntuacionCoches;
     }
@@ -112,7 +112,7 @@ public class GuardarPuntuacion : MonoBehaviour
     {
         puntuacionNegras = 0;
         puntuacionBlancas = 0;
-        puntuacionCoches = 0f;
+        puntuacionCoches = 0;
         dianasAcertadas = 0;
 
         tiempoOvejas = 0f;

@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class DestruirCoches : MonoBehaviour
 {
+    public PuntuacionMoneda gestorPuntuacion;
     public string etiquetaDeObjetivo = "Coche";
     private int cocheDestruidos;
 
@@ -21,7 +22,10 @@ public class DestruirCoches : MonoBehaviour
             Destroy(other.gameObject);
             cocheDestruidos++;
             if (cocheDestruidos > 1)
+            {
+                GuardarPuntuacion.Instance?.GuardarPuntCoches(gestorPuntuacion.GetMonedasFinales());
                 SceneManager.LoadScene(escenaObjetivo);
+            }
         }
     }
 }

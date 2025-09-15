@@ -19,7 +19,7 @@ public class GirarManecilla : MonoBehaviour
         }
 
         if (GuardarPuntuacion.Instance != null)
-        {//////////////////////////////////////////// PuntosCoches ///////////////////////////////////////////////
+        {
             GuardarPuntuacion.Instance.GuardarTiempoCoches(ContadorArriba.Instance.GetTiempoFinal());
         }
 

@@ -8,7 +8,6 @@ public class CajaGuardaCoche : MonoBehaviour
 {
     private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
     private bool guardado;
-    private float tiempoInicioJuego;
 
     [System.Serializable]
     private class DatosPuntuCoche
@@ -26,11 +25,6 @@ public class CajaGuardaCoche : MonoBehaviour
         grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
         grabInteractable.selectEntered.AddListener(OnGrab);
         grabInteractable.selectExited.AddListener(OnRelease);
-    }
-
-    void Start()
-    {
-        tiempoInicioJuego = Time.time;
     }
 
     private void OnGrab(SelectEnterEventArgs args)
@@ -66,7 +60,7 @@ public class CajaGuardaCoche : MonoBehaviour
         DatosPuntuCoche dataPuntu = new()
         {
             juego = "RotacionCoches",
-            duracion = Time.time - tiempoInicioJuego,
+            duracion = GuardarPuntuacion.Instance.GetTiempoCoches(),
             platforma = Application.platform.ToString(),
             versionJuego = "1.0.0",
             points = GuardarPuntuacion.Instance.GetPuntCoches()
