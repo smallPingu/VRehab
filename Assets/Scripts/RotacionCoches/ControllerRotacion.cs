@@ -12,7 +12,22 @@ public class ControllerRotacion : MonoBehaviour
 
     void Start()
     {
-        if (controller) neutralAngle = GetAxisAngle();
+        if (ParametrosInicial.instance != null)
+        {
+            angleThreshold = ParametrosInicial.instance.paramRotacionCoches.anguloMinimo;
+            speed = ParametrosInicial.instance.paramRotacionCoches.velocidadJuego;
+
+            Debug.Log($"Configuración de control cargada: Ángulo Mínimo={angleThreshold}, Velocidad={speed}");
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró ParametrosInicial.instance. Usando valores por defecto para el control.");
+        }
+
+        if (controller != null)
+        {
+            neutralAngle = GetAxisAngle();
+        }
     }
 
     void Update()

@@ -1,25 +1,36 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class CountdownManager : MonoBehaviour
 {
     public GameObject[] numberModels;
     public Transform displayPoint;
     public float countdownInterval = 1.0f;
-    public int startNumber = 25;
-
-    private List<GameObject> currentDigits = new List<GameObject>();
 
     public Contador contadorNegras;
     public Contador contadorBlancas;
     public string nextSceneName;
+    private int startNumber;
+    private float gameSpeed;
+    private List<GameObject> currentDigits = new List<GameObject>();
 
     void Awake()
     {
-        // PlayerPrefs 
-        //    Velocidad Generacion
-        //    Duracion
+        if (ParametrosInicial.instance != null)
+        {
+            startNumber = ParametrosInicial.instance.paramOrdenaOvejas.cuentaAtras;
+            gameSpeed = ParametrosInicial.instance.paramOrdenaOvejas.velocidadJuego;
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró ParametrosInicial.instance. Usando valores por defecto.");
+            startNumber = 25;
+            gameSpeed = 1f;
+        }
+
+        Time.timeScale = gameSpeed;
     }
 
     void Start()
@@ -33,21 +44,25 @@ public class CountdownManager : MonoBehaviour
         {
             ClearPreviousDigits();
             DisplayNumber(number);
-            yield return new WaitForSeconds(countdownInterval);
+
+            yield return new WaitForSecondsRealtime(countdownInterval);
         }
 
         Debug.Log("Countdown finished!");
 
-        // Store data
         if (GuardarPuntuacion.Instance != null)
         {
             GuardarPuntuacion.Instance.GuardarPuntNegras(contadorNegras.GetPuntuacion());
             GuardarPuntuacion.Instance.GuardarPuntBlancas(contadorBlancas.GetPuntuacion());
-
             GuardarPuntuacion.Instance.GuardarTiempoOvejas(startNumber);
         }
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneName);
+        SceneManager.LoadScene(nextSceneName);
+    }
+
+    void OnDestroy()
+    {
+        Time.timeScale = 1f;
     }
 
     void ClearPreviousDigits()
@@ -68,10 +83,12 @@ public class CountdownManager : MonoBehaviour
         for (int i = 0; i < digits.Length; i++)
         {
             int digitValue = (int)char.GetNumericValue(digits[i]);
-
-            Vector3 position = displayPoint.position + new Vector3((i * spacing) - totalWidth / 2f, 0, 0);
-            GameObject digitGO = Instantiate(numberModels[digitValue], position, displayPoint.rotation);
-            currentDigits.Add(digitGO);
+            if (digitValue >= 0 && digitValue < numberModels.Length)
+            {
+                Vector3 position = displayPoint.position + new Vector3((i * spacing) - totalWidth / 2f, 0, 0);
+                GameObject digitGO = Instantiate(numberModels[digitValue], position, displayPoint.rotation);
+                currentDigits.Add(digitGO);
+            }
         }
     }
 }

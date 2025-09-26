@@ -684,7 +684,7 @@ GameObject:
   - component: {fileID: 708376322}
   - component: {fileID: 708376325}
   m_Layer: 0
-  m_Name: Generador
+  m_Name: PuntoGenerador
   m_TagString: Coche
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

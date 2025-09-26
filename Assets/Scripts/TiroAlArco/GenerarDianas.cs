@@ -25,6 +25,16 @@ public class GeneradorDeDianas : MonoBehaviour
 
     private void Start()
     {
+        if (ParametrosInicial.instance != null)
+        {
+            nivelInicial = ParametrosInicial.instance.paramTiroAlArco.nivelInicial;
+            Debug.Log("Nivel inicial cargado desde el gestor: " + nivelInicial);
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró ParametrosInicial.instance. Usando nivel por defecto: " + nivelInicial);
+        }
+        
         puntoCentral = transform.position;
         nivelActual = Mathf.Max(1, nivelInicial);
         GenerarRonda();

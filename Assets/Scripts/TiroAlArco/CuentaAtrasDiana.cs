@@ -9,6 +9,7 @@ public class CuentaAtrasDiana : MonoBehaviour
     public Transform displayPoint;
     public float countdownInterval = 1.0f;
     public int startNumber = 60;
+    private float gameSpeed;
     public string nextSceneName;
 
     public ContadorPuntuacion contador;
@@ -18,8 +19,17 @@ public class CuentaAtrasDiana : MonoBehaviour
 
     void Awake()
     {
-        // PlayerPrefs
-        //    Velocidad Juego
+        if (ParametrosInicial.instance != null)
+        {
+            startNumber = (int)ParametrosInicial.instance.paramTiroAlArco.cuentaAtras;
+            gameSpeed = ParametrosInicial.instance.paramTiroAlArco.velocidadJuego;
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró ParametrosInicial.instance. Usando valores por defecto.");
+        }
+
+        Time.timeScale = gameSpeed;
     }
 
     void Start()
@@ -38,7 +48,7 @@ public class CuentaAtrasDiana : MonoBehaviour
         {
             ClearPreviousDigits();
             DisplayNumber(number);
-            yield return new WaitForSeconds(countdownInterval);
+            yield return new WaitForSecondsRealtime(countdownInterval);
         }
 
         generador.enabled = false;
