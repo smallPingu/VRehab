@@ -47,6 +47,8 @@ public class ParametrosInicial : MonoBehaviour
     private const float VALOR_DEFECTO_ANGULO = 25f;
     private const int VALOR_DEFECTO_NIVEL = 1;
 
+    public EnvioRecibeParam envioRecibeParam;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -78,6 +80,51 @@ public class ParametrosInicial : MonoBehaviour
         sliderCuentaAtras.value = cuentaAtrasGuardada;
         sliderVelocidadJuego.value = velocidadGuardada;
         sliderAnguloMinimo.value = anguloGuardado;
+    }
+
+    public void SubirAjustesAlServidor()
+    {
+        Debug.Log("Subiendo ajustes locales al servidor...");
+        ParametrosData data = new ParametrosData
+        {
+            cuentaAtras = PlayerPrefs.GetInt("cuentaAtras", VALOR_DEFECTO_CUENTA_ATRAS),
+            velocidadJuego = PlayerPrefs.GetFloat("velocidadJuego", VALOR_DEFECTO_VELOCIDAD),
+            anguloMinimo = PlayerPrefs.GetFloat("anguloMinimo", VALOR_DEFECTO_ANGULO),
+            nivelInicial = PlayerPrefs.GetInt("nivelInicial", VALOR_DEFECTO_NIVEL)
+        };
+
+        envioRecibeParam.GuardarParametros(data,
+            () => { Debug.Log("¡Ajustes subidos al servidor con éxito!"); },
+            (error) => { Debug.LogError("Error al subir ajustes: " + error); }
+        );
+    }
+
+    public void DescargarAjustesDesdeServidor()
+    {
+        Debug.Log("Descargando ajustes desde el servidor...");
+        envioRecibeParam.ObtenerParametros(
+            (datosRecibidos) => {
+                Debug.Log("Ajustes descargados. Aplicando localmente...");
+                
+                SetCuentaAtras_Data(datosRecibidos.cuentaAtras);
+                SetVelocidad_Data(datosRecibidos.velocidadJuego);
+                SetAnguloMin_Data(datosRecibidos.anguloMinimo);
+                SetNivel_Data(datosRecibidos.nivelInicial);
+
+                sliderCuentaAtras.value = datosRecibidos.cuentaAtras;
+                sliderVelocidadJuego.value = datosRecibidos.velocidadJuego;
+                sliderAnguloMinimo.value = datosRecibidos.anguloMinimo;
+
+                PlayerPrefs.SetInt("cuentaAtras", datosRecibidos.cuentaAtras);
+                PlayerPrefs.SetFloat("velocidadJuego", datosRecibidos.velocidadJuego);
+                PlayerPrefs.SetFloat("anguloMinimo", datosRecibidos.anguloMinimo);
+                PlayerPrefs.SetInt("nivelInicial", datosRecibidos.nivelInicial);
+                PlayerPrefs.Save();
+            },
+            (error) => {
+                Debug.LogError("Error al descargar ajustes: " + error);
+            }
+        );
     }
 
     public void OnCuentaAtrasFinEdit()

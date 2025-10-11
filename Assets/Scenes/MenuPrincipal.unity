@@ -600,6 +600,51 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1619840925}
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+--- !u!1 &40695184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 40695186}
+  - component: {fileID: 40695185}
+  m_Layer: 0
+  m_Name: EnvioRecibe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &40695185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40695184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69156f6120ad2644f920c529674bd20e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiBaseUrl: http://localhost:3000
+--- !u!4 &40695186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40695184}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.4, y: 1.77, z: 3.42}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &42336683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1310,7 +1355,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 129278127}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1103214168}
+        m_TargetAssemblyTypeName: ParametrosInicial, Assembly-CSharp
+        m_MethodName: SubirAjustesAlServidor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &129278127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2445,7 +2502,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 253652321}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1103214168}
+        m_TargetAssemblyTypeName: ParametrosInicial, Assembly-CSharp
+        m_MethodName: DescargarAjustesDesdeServidor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &253652321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6037,6 +6106,7 @@ MonoBehaviour:
   velocidadText: {fileID: 1682892564}
   anguloMinText: {fileID: 1940013124}
   nivelText: {fileID: 1047988494}
+  envioRecibeParam: {fileID: 40695185}
 --- !u!4 &1103214169
 Transform:
   m_ObjectHideFlags: 0
@@ -11420,3 +11490,4 @@ SceneRoots:
   - {fileID: 35237088}
   - {fileID: 1103214169}
   - {fileID: 138967659}
+  - {fileID: 40695186}
