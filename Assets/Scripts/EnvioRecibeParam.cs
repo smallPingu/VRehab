@@ -14,7 +14,7 @@ public class ParametrosData
 
 public class EnvioRecibeParam : MonoBehaviour
 {    
-    [SerializeField] private string apiBaseUrl = "http://localhost:3000";
+    [SerializeField] private string apiBaseUrl = "https://react-web-tfg.vercel.app";
 
     public void ObtenerParametros(Action<ParametrosData> onSuccess, Action<string> onError)
     {

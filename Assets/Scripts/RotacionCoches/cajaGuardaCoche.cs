@@ -69,7 +69,7 @@ public class CajaGuardaCoche : MonoBehaviour
         string jsonData = JsonUtility.ToJson(dataPuntu);
         Debug.Log("Enviando JSON: " + jsonData);
 
-        string url = "http://localhost:3000/api/puntuaciones";
+        string url = "https://react-web-tfg.vercel.app/api/puntuaciones";
 
         using UnityWebRequest www = new UnityWebRequest(url, "POST");
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);

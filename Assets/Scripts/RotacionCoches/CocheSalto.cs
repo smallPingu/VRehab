@@ -25,11 +25,13 @@ public class CocheSalto : MonoBehaviour
 
     void OnEnable()
     {
+        jumpAction.action.Enable(); 
         jumpAction.action.performed += PerformJump;
     }
 
     void OnDisable()
     {
+        jumpAction.action.Disable(); 
         jumpAction.action.performed -= PerformJump;
     }
 

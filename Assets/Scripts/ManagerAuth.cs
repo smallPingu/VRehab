@@ -10,7 +10,7 @@ public class ManagerAuth : MonoBehaviour
 
     public TextoFade controladorMensaje; 
 
-    private string loginUrl = "http://localhost:3000/api/auth/login";
+    private string loginUrl = "https://react-web-tfg.vercel.app/api/auth/login";
 
     [System.Serializable]
     private class LoginData
