@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
-using System; 
+using System;
 
 [System.Serializable]
 public class ParametrosData
@@ -13,8 +13,13 @@ public class ParametrosData
 }
 
 public class EnvioRecibeParam : MonoBehaviour
-{    
-    [SerializeField] private string apiBaseUrl = "https://react-web-tfg.vercel.app";
+{
+    [SerializeField] private string url = "https://react-web-tfg.vercel.app/api/parametros";
+    [System.Serializable]
+    private class ParametrosPostBody
+    {
+        public ParametrosData parametros;
+    }
 
     public void ObtenerParametros(Action<ParametrosData> onSuccess, Action<string> onError)
     {
@@ -30,7 +35,6 @@ public class EnvioRecibeParam : MonoBehaviour
             yield break;
         }
 
-        string url = apiBaseUrl + "/api/parametros";
         using (UnityWebRequest request = UnityWebRequest.Get(url))
         {
             request.SetRequestHeader("Authorization", "Bearer " + token);
@@ -40,17 +44,18 @@ public class EnvioRecibeParam : MonoBehaviour
             {
                 string json = request.downloadHandler.text;
                 ParametrosData data = JsonUtility.FromJson<ParametrosData>(json);
-                onSuccess?.Invoke(data); 
+                onSuccess?.Invoke(data);
             }
             else
             {
-                onError?.Invoke(request.error); 
+                onError?.Invoke(request.error);
             }
         }
     }
 
     public void GuardarParametros(ParametrosData data, Action onSuccess, Action<string> onError)
     {
+        Debug.Log("Token actual: " + PlayerPrefs.GetString("jwt_token", "NO TOKEN"));
         StartCoroutine(SaveParametersCoroutine(data, onSuccess, onError));
     }
 
@@ -62,16 +67,19 @@ public class EnvioRecibeParam : MonoBehaviour
             onError?.Invoke("Token no encontrado.");
             yield break;
         }
-        
-        string url = apiBaseUrl + "/api/parametros";
-        string jsonBody = JsonUtility.ToJson(data);
 
-        using (UnityWebRequest request = UnityWebRequest.PostWwwForm(url, "POST"))
+        ParametrosPostBody postBody = new ParametrosPostBody
+        {
+            parametros = data
+        };
+        string jsonBody = JsonUtility.ToJson(postBody);
+
+        using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
         {
             byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonBody);
             request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
-            
+
             request.SetRequestHeader("Content-Type", "application/json");
             request.SetRequestHeader("Authorization", "Bearer " + token);
 
@@ -83,6 +91,7 @@ public class EnvioRecibeParam : MonoBehaviour
             }
             else
             {
+                Debug.LogError("Error al guardar: " + request.error + " - " + request.downloadHandler.text);
                 onError?.Invoke(request.error);
             }
         }
