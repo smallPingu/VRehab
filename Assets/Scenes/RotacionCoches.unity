@@ -231,7 +231,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: d300d17a7bb07fe4aa9462759086a4ec, type: 2}
   m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
@@ -250,7 +250,7 @@ Transform:
   m_GameObject: {fileID: 68232198}
   serializedVersion: 2
   m_LocalRotation: {x: 0.18821575, y: 0.20034543, z: -0.039251752, w: 0.9606747}
-  m_LocalPosition: {x: -4.15, y: 9.08, z: -6.83}
+  m_LocalPosition: {x: -9.28, y: 14.67, z: -1.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -293,7 +293,7 @@ MonoBehaviour:
         m_Flags: 0
       m_Flags: 0
     m_Reference: {fileID: 0}
-  jumpForce: 5
+  jumpForce: 7.55
   groundCheck: {fileID: 1876025185}
   groundCheckRadius: 0.2
   groundLayer:
@@ -753,7 +753,7 @@ MonoBehaviour:
         m_Flags: 0
       m_Flags: 0
     m_Reference: {fileID: 0}
-  jumpForce: 5
+  jumpForce: 7.55
   groundCheck: {fileID: 271966754}
   groundCheckRadius: 0.2
   groundLayer:
@@ -2124,7 +2124,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
